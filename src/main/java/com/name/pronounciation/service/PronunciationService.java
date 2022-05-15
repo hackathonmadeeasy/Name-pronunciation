@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface PronunciationService {
 
-    public List<User> searchUsers(User user);
+     List<User> searchUsers(User user);
 }
