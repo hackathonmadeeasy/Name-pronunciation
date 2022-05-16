@@ -28,8 +28,8 @@ public class PronunciationApplication extends SpringBootServletInitializer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/pronunciation/**")
-                        .allowedOrigins("*")
-                        .allowCredentials(true);
+                        .allowedOrigins("*");
+
             }
         };
     }

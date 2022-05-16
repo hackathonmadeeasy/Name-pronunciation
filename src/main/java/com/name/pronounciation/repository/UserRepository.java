@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-    String FULL_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where first_name=:firstName% and last_name =:lastName%  and preferred_name=:preferredName%";
-    String FIRST_NAME_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where first_name=:firstName%";
+    String FULL_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where first_name=:firstName and last_name =:lastName%  and preferred_name=:preferredName%";
+    String FIRST_NAME_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where first_name=:firstName";
     String LAST_NAME_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where last_name=:lastName ";
     String PREFERRED_NAME_SEARCH_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where preferred_name=:preferredName ";
     String FIRST_AND_LAST_NAME_QUERY = "SELECT id,first_name,last_name,preferred_name,preferred_audio,standard from user_preferences where first_name=:firstName and last_name=:lastName ";
