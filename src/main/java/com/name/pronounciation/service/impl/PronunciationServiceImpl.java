@@ -33,7 +33,6 @@ public class PronunciationServiceImpl implements PronunciationService {
                     .id(userDetails.getId())
                     .lastName(userDetails.getLastName())
                     .firstName(userDetails.getFirstName())
-                    .preferredAudio(userDetails.getPreferredAudio())
                     .preferredName(userDetails.getPreferredName())
                     .build();
             userList.add(searchedDetails);
@@ -70,7 +69,6 @@ public class PronunciationServiceImpl implements PronunciationService {
                     .id(userDetails.getId())
                     .lastName(userDetails.getLastName())
                     .firstName(userDetails.getFirstName())
-                    .preferredAudio(userDetails.getPreferredAudio())
                     .preferredName(userDetails.getPreferredName())
                     .build();
             userDetailsList.add(searchedDetails);

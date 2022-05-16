@@ -23,6 +23,11 @@ public class PronunciationController {
             Map.entry("debajit", "password123#"),
             Map.entry("john", "password123#"),
             Map.entry("syed", "password123#"));
+    private static final Map<String, String> PRE_RECORDED_AUDIO = Map.ofEntries(
+            Map.entry("parameswara", "record3.mp4"),
+            Map.entry("debajit", "record2.mp4"),
+            Map.entry("syed", "record1.mp4")
+    );
 
     private PronunciationService pronunciationService;
 
@@ -30,12 +35,22 @@ public class PronunciationController {
     public ResponseEntity<User> login(@RequestBody Map<String, String> user) {
         if (USER_LIST.containsKey(user.get("userName"))) {
             if (USER_LIST.get(user.get("userName")).equalsIgnoreCase(user.get("password"))) {
-                return ResponseEntity.ok(
-                        pronunciationService.searchUsers(getUserName(user)).get(0)
-                );
+                var user_obj = pronunciationService.searchUsers(getUserName(user)).get(0);
+                if (PRE_RECORDED_AUDIO.containsKey(user.get("userName"))) {
+                    user_obj.setVoiceRecordUrl(PRE_RECORDED_AUDIO.get(user.get("userName")));
+                }
+                return ResponseEntity.ok(user_obj);
             }
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/findPreRecordedAudio")
+    public ResponseEntity<Map> find_user(@RequestBody Map<String, String> user) {
+        if (PRE_RECORDED_AUDIO.containsKey(user.get("userName"))) {
+            return ResponseEntity.ok(Map.of("voiceRecordUrl", PRE_RECORDED_AUDIO.get(user.get("userName"))));
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     private User getUserName(Map<String, String> user) {
